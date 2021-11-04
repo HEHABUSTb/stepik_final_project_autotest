@@ -19,10 +19,11 @@ links[7] = pytest.param(links[7], marks=pytest.mark.xfail)
 def test_guest_can_add_product_to_basket(browser, link):
     product_page = ProductPage(browser, link)
     product_page.open()
+    product_page.should_not_be_success_message() #check we don't have success message
     product_page.add_product_to_basket() #add product to basket
 
     product_page.solve_quiz_and_get_code() #solve puzzle
-
+    product_page.success_message_should_disappear() #check what success message disappear
 
     product_page.should_be_correct_product_price_in_basket()  #Check price in basket
     product_page.should_be_correct_product_name_in_basket() #Check name of product in basket
