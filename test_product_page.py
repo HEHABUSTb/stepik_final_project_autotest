@@ -19,7 +19,7 @@ links[7] = pytest.param(links[7], marks=pytest.mark.xfail)
 
 #@pytest.mark.parametrize('link', links)
 def test_guest_can_add_product_to_basket(browser):
-    link = 'http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/'
+    link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0'
     product_page = ProductPage(browser, link)
     product_page.open()
     product_page.should_not_be_success_message() #check we don't have success message
