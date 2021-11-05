@@ -30,3 +30,23 @@ def test_guest_can_add_product_to_basket(browser):
 
     product_page.should_be_correct_product_price_in_basket()  #Check price in basket
     product_page.should_be_correct_product_name_in_basket() #Check name of product in basket
+
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link = 'http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/'
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.add_product_to_basket()
+    product_page.should_not_be_success_message()
+
+def test_guest_cant_see_success_message(browser):
+    link = 'http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/'
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.should_not_be_success_message()
+
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link = 'http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/'
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.add_product_to_basket()
+    product_page.success_message_should_disappear()
