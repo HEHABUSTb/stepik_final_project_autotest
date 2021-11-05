@@ -24,14 +24,14 @@ links[7] = pytest.param(links[7], marks=pytest.mark.xfail)
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
-        self.link = 'http://selenium1py.pythonanywhere.com/en-gb/accounts/login/'
-        self.page = LoginPage(browser, self.link)
-        self.page.open()
-        self.random_words = RandomWords()
-        self.email = self.random_words.get_random_word() + "@fakesmail.org"
-        self.password = self.random_words.get_random_word() + '123s'
-        self.page.register_new_user(self.email, self.password)
-        self.page.should_be_authorized_user()
+        link = 'http://selenium1py.pythonanywhere.com/en-gb/accounts/login/'
+        page = LoginPage(browser, link)
+        page.open()
+        random_words = RandomWords()
+        email = random_words.get_random_word() + "@fakesmail.org"
+        password = random_words.get_random_word() + '123s'
+        page.register_new_user(email, password)
+        page.should_be_authorized_user()
 
     def test_user_cant_see_success_message(self, browser):
         link = 'http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/'
